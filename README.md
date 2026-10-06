@@ -1,2 +1,111 @@
-# Painel-de-Solu-es-Corporativas-Exerc-cios-em-JavaScript
-Dashboard web simples com conversor de câmbio, PDV com descontos e simulador de investimentos. Desenvolvido em HTML, CSS e JavaScript puro para revisão acadêmica na Faculdade Anhanguera.
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios - Painel de Soluções Corporativas</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<link rel = "stylesheet" type="text/css"
+href="css/style.css">
+
+<script>
+    function calcularCambio() {
+        var valorReal = Number(document.getElementById('valorReal').value);
+        var resultado = document.getElementById('resConversor');
+
+        var cotacao = 5.20;
+        var valorDolar = valorReal / cotacao;
+
+        resultado.textContent = "US$ " + valorDolar.toFixed(2);
+    }
+
+    function finalizarVenda() {
+        var preco = Number(document.getElementById('precoProduto').value);
+        var cupom = document.getElementById('cupom').value;
+        var resultado = document.getElementById('resVenda');
+
+        var desconto = preco * cupom;
+        var valorFinal = preco - desconto;
+
+        resultado.textContent = "Valor Final: R$ " + valorFinal.toFixed(2);
+    }
+  
+    function simularRendimento() {
+        var capital = Number(document.getElementById('capital').value);
+        var taxa = Number(document.getElementById('taxa').value);
+        var resultado = document.getElementById('resInvestimento');
+
+        var rendimento = capital * (taxa / 100);
+        var valorTotal = capital + rendimento;
+
+        resultado.textContent = "Valor Total: R$ " + valorTotal.toFixed(2);
+    }
+
+</script>
+
+<body>
+
+
+   <header>
+        <h1>Faculdade Anhanguera - Unidade Osasco</h1>
+        <p>Exercicios de Revisão da B1 - Desenvolvimento em Javascript</p>
+    </header>
+
+    <div class="dashboard">
+        
+        <div class="card">
+            <h3>1. Câmbio Comercial</h3>
+            <div class="form-group">
+                <label>Valor em Reais (R$)</label>
+                <input type="number" id="valorReal" placeholder="Ex: 1500.00">
+               </div>
+              <button onclick="calcularCambio()">Calcular cotação</button>
+             
+           <div class="result-box" id="resConversor">Aguardando dados...</div>
+        </div>
+
+        <div class="card">
+            <h3>2. PDV - Aplicar Desconto</h3>
+            <div class="form-group">
+                <label>Preço do Produto (R$)</label>
+                <input type="number" id="precoProduto" placeholder="Ex: 250.00">
+            </div>
+            <div class="form-group">
+                <label>Cupom de Desconto</label>
+                <select id="cupom">
+                    <option value="0">Sem Cupom (0%)</option>
+                    <option value="0.05">CLIENTE_NOVO (5%)</option>
+                    <option value="0.10">SOCIOTORCEDOR (10%)</option>
+                    <option value="0.20">BLACKFRIDAY (20%)</option>
+                </select>
+            </div>
+            <button onclick="finalizarVenda()">Finalizar Venda</button>
+
+            <div class="result-box" id="resVenda">Aguardando venda...</div>
+        </div>
+
+        <div class="card">
+            <h3>3. Simulador de Investimento</h3>
+            <div class="form-group">
+                <label>Capital Inicial (R$)</label>
+                <input type="number" id="capital" placeholder="Ex: 1000.00">
+            </div>
+            <div class="form-group">
+                <label>Taxa de Juros Mensal (%)</label>
+                <input type="number" id="taxa" placeholder="Ex: 1.5">
+            </div>
+            <button onclick="simularRendimento()">Simular Rendimento</button>
+            <div class="result-box" id="resInvestimento">Aguardando simulação...</div>
+        </div>
+
+    </div>
+
+    <footer>
+        <h1>Prof. Marcel Teixeira</h1>
+        <p>Desenvolvimento em Javascript</p>
+    </footer>
+
+</body>
+</html>
